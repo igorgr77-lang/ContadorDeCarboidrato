@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CarbCounter Pro</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PapaParse para ler CSV do Google Sheets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="glass-panel">
+            <div class="header-top">
+                <h1>CarbCounter</h1>
+                <button id="syncBtn" class="icon-btn" aria-label="Sincronizar dados">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.59-10.09l5.67-5.67"/></svg>
+                </button>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" id="searchInput" placeholder="Buscar alimento..." autocomplete="off">
+                    <button id="clearSearchBtn" class="hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <!-- Autocomplete Dropdown -->
+                <ul id="searchResults" class="search-results hidden glass-panel"></ul>
+            </div>
+        </header>
+
+        <!-- Current Meal -->
+        <main class="meal-container">
+            <div class="meal-header">
+                <h2>Refeição Atual</h2>
+                <button id="clearMealBtn" class="text-btn">Limpar</button>
+            </div>
+            
+            <ul id="mealList" class="meal-list">
+                <li class="empty-state">
+                    <div class="empty-icon">🍽️</div>
+                    <p>Sua refeição está vazia.</p>
+                    <span>Busque e adicione alimentos acima.</span>
+                </li>
+            </ul>
+        </main>
+
+        <!-- Footer Total -->
+        <footer class="glass-panel footer-total">
+            <div class="total-label">Total de Carboidratos</div>
+            <div class="total-value"><span id="totalCarbs">0.0</span> <small>g</small></div>
+        </footer>
+
+        <!-- Modal para Inserir Peso -->
+        <div id="weightModal" class="modal-backdrop hidden">
+            <div class="modal glass-panel">
+                <h3 id="modalFoodName">Nome do Alimento</h3>
+                <p id="modalFoodCoeff" class="coeff-info">Coeficiente: 0.0</p>
+                
+                <div class="input-group">
+                    <label for="weightInput">Peso em gramas (g):</label>
+                    <input type="number" id="weightInput" inputmode="numeric" placeholder="Ex: 100" autofocus>
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+                    <button id="addBtn" class="btn btn-primary">Adicionar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificação de Toast -->
+        <div id="toast" class="toast hidden">Notificação</div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
