@@ -1,0 +1,16 @@
+{
+  "name": "ContCarbo",
+  "short_name": "ContCarbo",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#10b981",
+  "description": "Contador de Carboidratos Inteligente",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
